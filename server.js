@@ -17,7 +17,7 @@ app.post("/upload", (req, res) => {
     res.sendStatus(200);
 });
 app.get("/frames", (req, res) => {
-    const files = fs.readdirSync(framesDir).map(file => `https://free-fire-wgxh.onrender.com/frames/${file}`);
+    const files = fs.readdirSync(framesDir).map(file => `https://reddem-code.onrender.com/frames/${file}`);
     res.json(files);
 });
 app.use("/frames", express.static(framesDir));
